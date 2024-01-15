@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-sm_ke(z@+iix#59(1=r@tbx2yhmr!1tf9rn%_p-ft+8$rq+-*$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.goldianikenterprise.com', 'goldianikenterprise.com',]
+ALLOWED_HOSTS = ['www.goldianikenterprise.com',
+                 'goldianikenterprise.com', '127.0.0.1']
 
 
 # SECURE_SSL_REDIRECT = True
@@ -149,21 +150,28 @@ USE_TZ = True
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CLOUDINARY_URL = 'cloudinary://679247111264356:xs6N7vLqfZPsiFX7iS7CM1kHrZg@dmvyoaluh'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dmvyoaluh',
-    'API_KEY': '679247111264356',
-    'API_SECRET': 'xs6N7vLqfZPsiFX7iS7CM1kHrZg',
-}
+cloudinary.config(
+    cloud_name='dbrvleydy',
+    api_key='387625877385614',
+    api_secret='zZrsexxvBVryHpiyJ6DG2tZrl5Y'
+)
 
-# Static files (CSS, JavaScript, Images)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static'))]
 
-# Media files
-MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
+
+
+MEDIA_URL = '/media/'  # URL for media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # settings.py
 AUTH_USER_MODEL = 'authorization.CustomUser'
