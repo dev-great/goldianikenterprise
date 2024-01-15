@@ -148,32 +148,22 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static'))]
-
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-    DATABASES = {'default': dj_database_url.config()}
-
-
-MEDIA_URL = '/media/'  # URL for media files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-cloudinary.config(
-    cloud_name='dbrvleydy',
-    api_key='387625877385614',
-    api_secret='zZrsexxvBVryHpiyJ6DG2tZrl5Y'
-)
+CLOUDINARY_URL = 'cloudinary://679247111264356:xs6N7vLqfZPsiFX7iS7CM1kHrZg@dmvyoaluh'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmvyoaluh',
+    'API_KEY': '679247111264356',
+    'API_SECRET': 'xs6N7vLqfZPsiFX7iS7CM1kHrZg',
+}
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Media files
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # settings.py
 AUTH_USER_MODEL = 'authorization.CustomUser'
