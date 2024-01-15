@@ -176,3 +176,5 @@ EMAIL_HOST_USER = 'unique_mind16@yahoo.com'
 EMAIL_HOST_PASSWORD = 'xqywwridnwrxgjwr'
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
