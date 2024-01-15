@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-sm_ke(z@+iix#59(1=r@tbx2yhmr!1tf9rn%_p-ft+8$rq+-*$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.goldianikenterprise.com', 'goldianikenterprise.com',]
 
 
 # SECURE_SSL_REDIRECT = True
