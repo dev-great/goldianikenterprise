@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+
+
+<!--==========================
+        CHECKOUT START
+    ===========================-->
+<section class="checkout pt_170 xs_pt_90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 wow fadeInLeft">
+                <div class="checkout_area">
+                    <h2>Shipping Address</h2>
+                    <form action="{% url 'core:shipping_address' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" placeholder="First Name" id="firstName" name="first_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" placeholder="Last Name" id="lastName" name="last_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" placeholder="Your Email" id="email" name="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" placeholder="Your Phone" id="number" name="phone_number" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="text" placeholder="Address">
+                            </div>
+                            <div class="col-12">
+                                <button class="common_btn" type="submit">Add shipping address</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+       
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

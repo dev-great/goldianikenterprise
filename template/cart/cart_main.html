@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<!--==========================
+        BREADCRUMB AREA START
+    ===========================-->
+<!-- <section class="breadcrumb_area" style="background: url(../static/images/banner_bg_2.jpg);">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-12">
+                
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--==========================
+        BREADCRUMB AREA END
+    ===========================-->
+
+
+<!--==========================
+        CART VIEW START
+    ===========================-->
+<section class="cart_view mt_170 xs_mt_95">
+    
+    <div class="container">
+       
+        <div class="row wow fadeInUp">
+            <div class="col-lg-8">
+                <div class="cart_list">
+                    <div class="table-responsive">
+                        <table style="margin-top: 45px;">
+                            <thead>
+                                <tr>
+                                    <th class="pro_img">Image</th>
+
+                                    <th class="pro_name">Product Details</th>
+
+                                    <th class="pro_tk">Price</th>
+                                    <th class="pro_tk">Quantity</th>
+
+                                    <th class="pro_icon">
+                                        <a class="clear_all" href="#">Clear</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart_item in cart_items %}
+                                <tr>
+                                    <td class="pro_img">
+                                        <img src="{{cart_item.meal.image.url}}" class="img-fluid w-100">
+                                    </td>
+
+                                    <td class="pro_name">
+                                        <a href="#">{{cart_item.meal.name}}</a>
+                                    </td>
+
+                                    <td class="pro_tk">
+                                        <h6>₦{{cart_item.subtotal|intcomma}}</h6>
+                                    </td>
+                                    <td class="pro_tk">
+                                        <h6>{{ cart_item.quantity}}</h6>
+                                    </td>
+
+                                    <td class="pro_icon">
+                                        <a href="{% url 'core:cart_remove' cart_item.id %}"><i class="far fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+            
+                    <div class="col-xl-4 col-md-5 col-lg-5">
+                        <div class="cart_summery">
+                            <h6>total cart ({{cart_length}})</h6>
+                            <p>delivery: <span>₦0.00</span></p>
+                            <p>discount: <span>₦0.00</span></p>
+                            <p class="total"><span>total:</span> <span>₦{{total_amount|intcomma}}</span></p>
+                            <a class="common_btn" href="{% url 'core:shipping' %}">checkout</a>
+                        </div>
+                    </div>
+                
+        </div>
+    </div>
+</section>
+<!--==========================
+        CART VIEW END
+    ===========================-->
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<!--==========================
+        BREADCRUMB AREA START
+    ===========================-->
+<!-- <section class="breadcrumb_area">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-12">
+                <div class="breadcrumb_text">
+                    <ul>
+                        <li><a href="{% url 'core:index' %}">Home </a></li>
+                        <li><a href="{% url 'core:about' %}">Menu list</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--==========================
+        BREADCRUMB AREA END
+    ===========================-->
+
+
+<!--==========================
+        MENU STYLE 03 START
+    ===========================-->
+<section class="menu_grid_view mt_200 xs_mt_100">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 order-2 wow fadeInLeft">
+                <div class="menu_sidebar sticky_sidebar">
+                    <div class="sidebar_wizard sidebar_search">
+                        <h2>Search</h2>
+                        <form action="{% url 'core:menu_with_tag' tag=None %}" method="get"> 
+                            <input type="text" name="query" placeholder="Search here...">
+                            <button type="submit"><i class="far fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="sidebar_wizard sidebar_tags mt_25">
+                        <h2>Categories</h2>
+                        <ul>
+                            {% for tag in tags %}
+                                <li><a href="{% url 'core:menu_with_tag' tag=tag.name %}">{{ tag.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 order-lg-2">
+                <div class="row">
+                    {% for meal in meals %}
+                    <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                        <div class="single_menu">
+                            <div class="single_menu_img">
+                                <img src="{{ meal.image.url }}" alt="menu" class="img-fluid w-100">
+                            </div>
+                            <div class="single_menu_text">
+                                <p class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </p>
+                                <a class="category" href="#">{{ meal.tag.first }}</a>
+                                <a class="title" href="#">{{ meal.name }}</a>
+                                <p class="descrption">{{ meal.description }}</p>
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <a class="add_to_cart" href="{% url 'core:menu_detail' pk=meal.pk %}">View Details</a>
+                                    <h3>₦{{ meal.price|intcomma }} <del>₦{{ meal.price|add:1000|intcomma }}</del></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="pagination_area mt_35 xs_mb_60 wow fadeInUp">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                        {% if meals.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <i class="far fa-arrow-left"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for num in meals.paginator.page_range %}
+                            {% if meals.number == num %}
+                                <li class="page-item"><a class="page-link active" href="#">{{ num }}</a></li>
+                                {% else %}
+                                <li class="page-item"><a class="page-link " href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if meals.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <i class="far fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

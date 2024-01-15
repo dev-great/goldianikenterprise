@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!--==========================
+            ERROR START
+        ===========================-->
+<section class="error_page pt_120 xs_pt_100 mt_120 xs_mt_100">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-xxl-5 col-md-9 col-lg-7 col-xl-6 m-auto">
+                <div class="error_text">
+                    <div class="error_img" >
+                       
+                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/payment-unsuccessful-4790938-3989291.png" alt="Error"   class="img-fluid ">
+                       
+                    </div>
+                    <h2>Oops! Payment Failed</h2>
+                    <p>Payment was declined by the provider, try another card to continue your purchase.</p>
+                    <a class="common_btn" href="{% url 'core:success' %}">go back home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+            ERROR END
+        ===========================-->
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!--==========================
+        SIGN IN START
+    ===========================-->
+<section class="sign_in">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-6 wow fadeInLeft">
+            <div class="sign_in_img">
+                <img src="https://images.unsplash.com/31/RpgvvtYAQeqAIs1knERU_vegetables.jpg?q=80&w=2975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="sign in" class="img-fluid w-100">
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-10 col-lg-6 wow fadeInRight">
+            <div class="sign_in_form">
+                <a class="sign_in_logo" href="index.html">
+                    <img src="{% static 'images/logo.png' %}" alt="sign in" class="img-fluid w-100">
+                </a>
+                <h2>Welcome back, sign in</h2>
+                <p class="description">Sign in to your account and make recharges. payments and bookings faster</p>
+            <form method="post" action="{% url 'authorization:login' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="email" placeholder="Enter your email...">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="password" name="password" placeholder="Enter your password...">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="sign_in_check_area">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="remember_me">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="{% url 'password-reset' %}">Forget Password?</a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="common_btn" type="submit">sign in</button>
+                    </div>
+                </div>
+            </form>
+                    <div class="col-12">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p class="{{ message.tags }}" style="color: crimson;">{{ message }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+               
+                <p class="dont_account">Don’t have an account? <a href="{% url 'authorization:registration_view' %}">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        SIGN IN END
+    ===========================-->
+
+
+{% endblock %}

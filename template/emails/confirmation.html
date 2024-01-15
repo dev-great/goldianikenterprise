@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  style="font-family: Nunito, Roboto, sans-serif"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Verification</title>
+    <style>
+      body {
+        font-family: "Nunito", "Roboto", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+      p {
+        color: #000000;
+        font-size: 14px;
+        margin: 0;
+        -webkit-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        mso-line-height-rule: exactly;
+      }
+      h3 {
+        color: #ffffff;
+        font-size: 21px;
+        line-height: 32px;
+        margin: 0;
+        -webkit-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        mso-line-height-rule: exactly;
+      }
+      .otp-container {
+        background-color: #123f88;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        margin: 10px 0;
+      }
+      .footer {
+        margin-top: 20px;
+        padding: 20px;
+        color: #888;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h4>Dear Admin</h4>
+    <p>
+      You’ve recived a message from the contact form of your website,
+       please take a moment to verify. 
+    </p>
+    <br>
+    <p>Name: {{ name }}</p>
+    <p>Phone number: {{ phone_number }}</p>
+    <div class="otp-container">
+      <p>{{ message }}</p>
+    </div>
+
+    <div class="footer">
+      <p>
+        Thank you for choosing our service. If you have any questions, please
+        contact our support team.
+      </p>
+      <br />
+      <p>Contact Goldianik Enterprise:</p>
+      <p>Email: Goldianikenterprise@yahoo.com</p>
+      <br />
+      <p>
+        Address: Saburi Junction Opp. Orange Filling Station Dei- dei FCT Abuja.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!--==========================
+        BREADCRUMB AREA START
+    ===========================-->
+<!-- <section class="breadcrumb_area" style="background: url(../static/images/banner_bg_2.jpg);">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-12">
+                <div class="breadcrumb_text">
+                    <h1>checkout</h1>
+                    <ul>
+                        <li><a href="#">Home </a></li>
+                        <li><a href="#">checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--==========================
+        BREADCRUMB AREA END
+    ===========================-->
+
+
+<!--==========================
+        CHECKOUT START
+    ===========================-->
+<section class="checkout pt_170 xs_pt_90">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-7 wow fadeInRight">
+                <div class="checkout_sidebar">
+                    <h2 >Check out</h2>
+                    <div class="cart_summery">
+                        <h6>total cart ({{cart_length}})</h6>
+                        <form action="{% url 'core:checkout' %}" method="get">
+                            <select class="select_2" name="city" id="cityDropdown" onchange="this.form.submit()" required>
+                                <option value="AL">Select delivery city</option>
+                                {% for city, fee in delivery_fees.items %}
+                                {% if city == request.GET.city %}
+                                <option value="{{ city }}" selected>{{ city }}</option>
+                                {% else %}
+                                <option value="{{ city }}">{{ city }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        
+                        </form>
+                       
+                        <p>delivery: <span id="deliveryFee">₦{{ delivery_fee|intcomma }}</span></p>
+                        <p>discount: <span>₦0.00</span></p>
+                        <p class="total"><span>total:</span> <span id="paymentData" data-total-amount="{{ total_amount|add:delivery_fee }}" >₦{{total_amount|add:delivery_fee|intcomma}}</span></p>
+                        <button class="common_btn" onclick="payWithPaystack()">checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        CHECKOUT END
+    ===========================-->
+
+{% url 'core:success' as success_url %}
+{% url 'core:failure' as failure_url %}
+<script>
+  function payWithPaystack() {
+        var totalAmount = document.getElementById('paymentData').dataset.totalAmount;
+        
+        var firstName = "{{ user.firstName }}";
+      var lastName = "{{ user.lastName }}";
+      var email = "{{ user.email }}";
+
+
+        var handler = PaystackPop.setup({
+            key: 'pk_test_08d13403b3c81e40ed386543a1fa79aec93c4343',
+            email: email,
+            amount: parseInt(totalAmount+"00"),
+            metadata: {
+                custom_fields: [
+                    {
+                        display_name: firstName + " " + lastName,
+                        variable_name: "08100808038",
+                        value: "08100808038",
+                    }
+                ]
+            },
+            callback: function (response) {
+                if (response.status == "success") {
+                   if (totalAmount.trim() !== "") {
+                        window.location.href = "{% url 'core:create_order' totalPrice=total_amount|add:delivery_fee %}";
+                    } else {
+                        console.error("Total amount not available");
+
+                    }
+                } else {
+                    window.location.href =  "{{failure_url}}";
+                }
+            },
+           
+            onClose: function () {
+                window.location.href = "{{failure_url}}";
+            }
+        });
+        handler.openIframe(); 
+    }
+
+</script>
+
+{% endblock %}

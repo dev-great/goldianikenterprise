@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!--==========================
+        BREADCRUMB AREA START
+    ===========================-->
+<!-- <section class="breadcrumb_area" style="background: url(../static/images/banner_bg_2.jpg);">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-12">
+                <div class="breadcrumb_text">
+                    <h1>contact</h1>
+                    <ul>
+                        <li><a href="{% url 'core:index' %}">Home </a></li>
+                        <li><a href="{% url 'core:contact' %}">contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--==========================
+        BREADCRUMB AREA END
+    ===========================-->
+
+
+<!--==========================
+        CONTACT START
+    ===========================-->
+<section class="contact_us pt_170 xs_pt_100">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-lg-6 col-md-8 wow fadeInLeft">
+                <div class="contact_img">
+                    <img src="{% static 'images/popup_subscribe_img.jpeg' %}" alt="contact" class="img-fluid w-100">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInRight">
+                <div class="contact_form">
+                    <h2>Get In Touch</h2>
+            <form action="{% url 'core:send_purchase_receipt_email' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="phone" placeholder="Phone Number">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="subject" placeholder="Subject">
+                    </div>
+                    <div class="col-md-12">
+                        <textarea rows="7" name="message" placeholder="Write Message..." required></textarea>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="subscribe" value="yes" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Select to subscribe to our newsletter and updates and we will send you
+                                all updates about our services.
+                            </label>
+                        </div>
+                        <button type="submit" class="common_btn">Submit now</button>
+                    </div>
+                </div>
+            </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt_95 xs_mt_75">
+            <div class="col-xl-4 col-md-6 wow fadeInUp">
+                <div class="contact_info">
+                    <div class="icon">
+                        <img src="{% static 'images/location_2.png' %}" alt="location" class="img-fluid w-100">
+                    </div>
+                    <div class="text">
+                        <p>Head office</p>
+                        <p>Saburi Junction Opp. Orange Filling Station Dei- dei FCT Abuja</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 wow fadeInUp">
+                <div class="contact_info">
+                    <div class="icon">
+                        <img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/whatsapp-1024.png" alt="call" class="img-fluid w-100">
+                    </div>
+                    <div class="text">
+                        <a href="https://whatsapp.com/channel/0029VaAdKn0JkK73Hxo6HU24">WhatsApp</a>
+                        <a href="https://whatsapp.com/channel/0029VaAdKn0JkK73Hxo6HU24">Connect via whatsapp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 wow fadeInUp">
+                <div class="contact_info">
+                    <div class="icon">
+                        <img src="{% static 'images/mail_icon.png' %}" alt="mail" class="img-fluid w-100">
+                    </div>
+                    <div class="text">
+                        <a href="mailto:Goldianikenterprise@yahoo.com">Goldianikenterprise@yahoo.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact_map mt_120 xs_mt_100 wow fadeInUp">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.6180165909022!2d7.28586397532867!3d9.098517990965616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e77c66b653dd5%3A0xcef8caaf89348ad0!2sOrange%20Filling%20Station!5e0!3m2!1sen!2sng!4v1704793178146!5m2!1sen!2sng"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+<!--==========================
+        CONTACT END
+    ===========================-->
+{% endblock %}

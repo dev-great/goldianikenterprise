@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    <!--==========================
+            POPUP SUBSCRIBE START
+        ===========================-->
+    <section class="popup_subscribe_area">
+        <div class="popup_subscribe_box">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="popup_subscribe_img">
+                        <img src="{% static 'images/popup_subscribe_img.jpeg' %}" alt="subscribe" class="img-fluid w-100">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form class="popup_subscribe_form">
+                        <span class="close_popup"><i class="far fa-times"></i></span>
+                        <h2>Subscibe for the Updates!</h2>
+                        <input type="text" placeholder="Enter Your Email Adress">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I agree to the <a href="privacy_policy.html">Privacy Policy</a>.
+                            </label>
+                        </div>
+                        <button type="submit" class="common_btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--==========================
+            POPUP SUBSCRIBE END
+        ===========================-->
+        
+<!--==========================
+        BANNER START
+    ===========================-->
+<section class="banner" style="background: url(static/images/banner_bg.jpg);">
+    <div class="container container_large">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xxl-6 col-lg-6 col-xl-6 col-md-9">
+                <div class="banner_text wow fadeInUp">
+                    <h5>Goldianik Enterprise </h5>
+                    <h1>Special Foods for your Eating </h1>
+                    <p>Savor the extraordinary flavors of culinary excellence at our table, where every dish tells a story of passion and
+                    freshness.</p>
+                    <form action="{% url 'core:menu_with_tag' tag=None %}" method="get">
+                        <input type="text"name="query"  placeholder="Enter Your desired meal">
+                        <div class="banner_btn_area d-flex flex-wrap align-items-center">
+                            <button class="common_btn" type="submit">Search Food</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xxl-5 col-lg-6 col-xl-6">
+                <div class="banner_img wow fadeInRight">
+                    <div class="img">
+                        <img src="{% static 'images/banner_img.jpg' %}" alt="banner" class="img-fluid w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        BANNER END
+    ===========================-->
+
+
+<!--==========================
+        CATEGORY START
+    ===========================-->
+<section class="category pt_130 xs_pt_90">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 wow fadeInUp">
+                <div class="section_heading heading_left mb_50">
+                    <h2> Our Popular category</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row category_slider">
+            <div class="col-xl-3 wow fadeInUp">
+                <a href="{% url 'core:menu_with_tag' tag='Swallow' %}" class="category_item">
+                    <img src="{% static 'images/category_img_1.jpg' %}" alt="category" class="img-fluid w-100">
+                    <h3>Swallow</h3>
+                </a>
+            </div>
+            <div class="col-xl-3 wow fadeInUp">
+                <a href="{% url 'core:menu_with_tag' tag='Signature Dish' %}" class="category_item">
+                    <img src="{% static 'images/category_img_2.jpg' %}" alt="category" class="img-fluid w-100">
+                    <h3>Signature Dish</h3>
+                </a>
+            </div>
+            <div class="col-xl-3 wow fadeInUp">
+                <a href="{% url 'core:menu_with_tag' tag='Snacks' %}" class="category_item">
+                    <img src="{% static 'images/category_img_3.jpg' %}" alt="category" class="img-fluid w-100">
+                    <h3>Snacks</h3>
+                </a>
+            </div>
+            <div class="col-xl-3 wow fadeInUp">
+                <a href="{% url 'core:menu_with_tag' tag='Drinks' %}" class="category_item">
+                    <img src="{% static 'images/category_img_4.jpg' %}" alt="category" class="img-fluid w-100">
+                    <h3>Drinks</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        CATEGORY END
+    ===========================-->
+
+
+<!--==========================
+        ADD BANNER START
+    ===========================-->
+<section class="add_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7 wow fadeInUp">
+                <div class="add_banner_large" style="background-color:skyblue ">
+                    <div class="text">
+                        <h3>One of the tasitest meals you can find in town</h3>
+                        <a href="{% url 'core:menu' %}"> order now <i class="fas fa-chevron-circle-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 wow fadeInUp">
+                <div class="add_banner_small" style="background-color:wheat;">
+                    <div class="text">
+                        <h3>Great Value Mixed Drinks</h3>
+                        <a href="{% url 'core:menu_with_tag' tag='Drinks' %}"> order now <i class="fas fa-chevron-circle-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        ADD BANNER END
+    ===========================-->
+
+
+<!--==========================
+        MENU ITEM START
+    ===========================-->
+<section class="menu_item pt_125 xs_pt_85">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 m-auto wow fadeInUp">
+                <div class="section_heading mb_45 xs_mb_50">
+                    <h2>Delicious Menu</h2>
+                </div>
+            </div>
+        </div>
+        <div id="schedule">
+            <div class="colorful-tab-wrapper" id="filter_area">
+             
+                <div class="row">
+                    <div class="col-12">
+                        <div class="colorful-tab-content active" id="item_1">
+                            <div class="row">
+                                {% for meal in meals %}
+                                    <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
+                                        <div class="single_menu">
+                                            <div class="single_menu_img">
+                                                <img src="{{ meal.image.url }}" alt="menu" class="img-fluid w-100">
+                                            </div>
+                                            <div class="single_menu_text">
+                                                <p class="rating">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </p>
+                                                <a class="category" href="#">{{ meal.tag.first }}</a>
+                                                <a class="title" href="#">{{ meal.name }}</a>
+                                                <p class="descrption">{{ meal.description }}</p>
+                                                <div class="d-flex flex-wrap align-items-center">
+                                                    <a class="add_to_cart" href="{% url 'core:menu_detail' pk=meal.pk %}">View Details</a>
+                                                    <h3>₦{{ meal.price|intcomma }} <del>₦{{ meal.price|add:1000|intcomma }}</del></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center mt_60">
+                        <a class="common_btn" href="{% url 'core:menu' %}">
+                            <span class="icon">
+                                <img src="{% static 'images/eye.png' %}" alt="order" class="img-fluid w-100">
+                            </span>
+                            View All Menu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--==========================
+        MENU ITEM END
+    ===========================-->
+
+
+<!--==========================
+        TESTIMONIAL START
+    ===========================-->
+<section class="testimonial mt_140 xs_mt_100" style="background: url(static/images/banner_bg_2.jpg);">
+    <div class="testimonial_overlay pt_250 xs_pt_100">
+        <div class="container mt_20">
+            <div class="row">
+                <div class="col-md-9 wow fadeInUp">
+                    <div class="testimonial_content">
+                    {% for testimonial in testimonials %}
+                        <div class="row testi_slider">
+                            <div class="col-12">
+                                <div class="single_testimonial">
+                                    <p class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </p>
+                                    <p class="description">"{{ testimonial.content }}"</p>
+                                    <div class="single_testimonial_footer">
+                                        
+                                        <h3>{{ testimonial.author }} <span>{{ testimonial.position }}</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        TESTIMONIAL END
+    ===========================-->
+
+
+<!--==========================
+        COUNTER START
+    ===========================-->
+<section class="counter_area">
+    <div class="counter_bg pt_30 pb_35">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp">
+                    <div class="single_counter">
+                        <h2 class="counter">150</h2>
+                        <span>Dishes</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp">
+                    <div class="single_counter">
+                        <h2 class="counter">2</h2>
+                        <span>Location</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp">
+                    <div class="single_counter">
+                        <h2 class="counter">3</h2>
+                        <span>Chefs</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp">
+                    <div class="single_counter">
+                        <h2 class="counter">10</h2>
+                        <span>Cities</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==========================
+        COUNTER END
+    ===========================-->
+
+{% endblock %}

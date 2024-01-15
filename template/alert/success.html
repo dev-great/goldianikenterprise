@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+    <!--==========================
+            ERROR START
+        ===========================-->
+    <section class="error_page pt_120 xs_pt_100 mt_120 xs_mt_100">
+        <div class="container">
+            <div class="row wow fadeInUp">
+                <div class="col-xxl-5 col-md-9 col-lg-7 col-xl-6 m-auto">
+                    <div class="error_text">
+                        <div class="error_img" >
+                            <img src="https://cdn.dribbble.com/users/1751799/screenshots/5512482/media/7a5ce6c70c47a3190504460a53bd8137.gif?resize=400x0" alt="Error" >
+                        </div>
+                        <h2>Payment Successsful</h2>
+                        <p>Your order payment has been placed successfully and confirmation is pending.</p>
+                        <a class="common_btn" href="{% url 'core:index' %}">go back home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--==========================
+            ERROR END
+        ===========================-->
+
+
+{% endblock %}

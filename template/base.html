@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    <title>Goldianik ENT - Eatery & Cartening Services</title>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/venobox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ranger_slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scroll_button.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_spacing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/colorfulTab.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.animatedheadline.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animated_barfiller.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+
+    {% include 'snippet/header.html' %}
+    {% include 'nav/navigation.html' %}
+   
+        {% block content %}
+
+        {%endblock %}
+
+    {% include 'snippet/footer.html' %}
+
+    <!-- ==========================
+        SCROLL BUTTON START
+    ===========================-->
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!--==========================
+        SCROLL BUTTON END
+    =========================== -->
+
+
+    <!--jquery library js-->
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/Font-Awesome.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.marquee.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countup.min.js' %}"></script>
+    <script src="{% static 'js/venobox.min.js' %}"></script>
+    <script src="{% static 'js/scroll_button.js' %}"></script>
+    <script src="{% static 'js/ranger_jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/ranger_slider.js' %}"></script>
+    <script src="{% static 'js/select2.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/colorfulTab.min.js' %}"></script>
+    <script src="{% static 'js/sticky_sidebar.js' %}"></script>
+    <script src="{% static 'js/animated_barfiller.js' %}"></script>
+    <script src="{% static 'js/jquery.animatedheadline.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script> -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+</body>
+
+</html>

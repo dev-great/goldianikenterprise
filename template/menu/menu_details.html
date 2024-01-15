@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!--==========================
+        BREADCRUMB AREA START
+    ===========================-->
+<!-- <section class="breadcrumb_area" style="background: url('{% static 'images/banner_bg_2.jpg' %}');">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-12">
+                <div class="breadcrumb_text">
+                    <h1>menu details</h1>
+                    <ul>
+                        <li><a href="#">Home </a></li>
+                        <li><a href="#">menu details</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--==========================
+        BREADCRUMB AREA END
+    ===========================-->
+
+
+<!--=========================
+        MENU DETAILS START
+    ==========================-->
+<section class="menu_details pt_200 xs_pt_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-md-8 col-lg-5 wow fadeInLeft">
+                <div class="menu_det_slider_area sticky_sidebar">
+                    <div class="row slider-for">
+                        <div class="col-12">
+                            <div class="details_large_img">
+                                <img src="{{ meal.image.url }}" alt="slider" class="img-fluid w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-md-8 col-lg-7 wow fadeInUp">
+                <div class="menu_det_text">
+                    <h2 class="details_title">{{ meal.name }}</h2>
+                    <p class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </p>
+                    <p class="price">₦{{ meal.price|intcomma }} <del>₦{{ meal.price|add:1000|intcomma }}</del></p>
+                    <div class="details_short_description">
+                        <h3>Description</h3>
+                        <p>{{ meal.description }}</p>
+                    </div>
+                    <form method="post"  action="{% url 'core:cart_add' meal_id=meal.id %}">
+                        {% csrf_token %}
+                    <div class="details_quentity">
+                        <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                            <div class="quentity_btn">
+                                <button class="btn btn-danger"type="button"  onclick="decrementValue()"><i class="fal fa-minus"></i></button>
+                                <input id="quantityInput" name="quantity" type="text" placeholder="1">
+                                <button class="btn btn-success" type="button" onclick="incrementValue()"><i class="fal fa-plus"></i></button>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="details_cart_btn">
+                        <button type="submit" class="common_btn" >
+                            <span class="icon">
+                                <img src="{% static 'images/cart_icon_1.png' %}" alt="order" class="img-fluid w-100">
+                            </span>
+                            add to cart
+                        </button>
+                      
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-8 d-lg-none d-xl-block wow fadeInRight">
+                <div class="sticky_sidebar">
+                    <div class="menu_details_offer">
+                        <p>No featured offers available</p>
+                        <a tabindex="0" data-bs-placement="bottom" data-bs-toggle="popover" data-bs-trigger="focus"
+                            data-bs-custom-class="custom-popover" data-bs-title="No featured offers available"
+                            data-bs-content="We're constantly working to bring you exciting deals and promotions. Please check back later for exclusive discounts and special offers. In the meantime, explore our menu and discover a delightful selection of meals to satisfy your cravings. Thank you for your understanding!">
+                            learn more <i class="far fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="menu_details_banner" style="background-color: #AB162C;">
+                        <!-- <img src="{% static 'images/lunch_menu_bg.jpg' %}" alt="offer" class="img-fluid w-100"> -->
+                        <div class="text">
+                            <h5>Get weekend 5% Off</h5>
+                            <h3>All Combo Pack</h3>
+                            <a href="#">
+                                <span><img src="{% static 'images/cart_icon_2.png' %}" alt="cart"
+                                        class="img-fluid w-100"></span>
+                                shop now
+                                <i class="far fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========================
+        MENU DETAILS END
+    ==========================-->
+<script>
+    var originalPrice = parseInt('{{ meal.price|intcomma }}', 10) || 0;
+    function incrementValue() {
+        var inputElement = document.getElementById('quantityInput');
+        var currentValue = parseInt(inputElement.value, 10) || 0;
+        inputElement.value = currentValue + 1;
+        event.preventDefault();
+         
+    }
+
+    function decrementValue() {
+        var inputElement = document.getElementById('quantityInput');
+        var currentValue = parseInt(inputElement.value, 10) || 0;
+        if (currentValue > 1) {
+            inputElement.value = currentValue - 1;
+        }
+        event.preventDefault();
+    }
+
+   
+</script>
+
+{% endblock %}

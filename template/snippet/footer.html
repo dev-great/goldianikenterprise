@@ -1,0 +1,77 @@
+<!--==========================
+        FOOTER START
+    ===========================-->
+{% load static %}
+<footer class="pt_100 mt_120 xs_mt_100">
+    <div class="container">
+        <div class="row justify-content-between wow fadeInUp">
+            <div class="col-lg-3 col-md-4">
+                <div class="footer_info">
+                    <a class="footer_logo" href="#">
+                        <img src="{% static 'images/logo.png' %}" alt="RESTINA" class="img-fluid w-100">
+                    </a>
+                    <p>A Tasty Meal Speaks For Itself.</p>
+                    <ul>
+                        <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 col-md-4">
+                <div class="footer_link">
+                    <h3>Our Menu</h3>
+                    <ul>
+                        <li><a href="{% url 'core:menu_with_tag' tag='Breakfast'  %}">Breakfast</a></li>
+                        <li><a href="{% url 'core:menu_with_tag' tag='Lunch' %}">Lunch</a></li>
+                        <li><a href="{% url 'core:menu_with_tag' tag='Dinner' %}">Dinner</a></li>
+                        <li><a href="{% url 'core:menu_with_tag' tag='Snacks' %}">Snacks</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 col-md-4">
+                <div class="footer_link">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="{% url 'core:index' %}">Home</a></li>
+                        <li><a href="{% url 'core:about' %}">About</a></li>
+                        <li><a href="{% url 'core:menu' %}">Menu List</a></li>
+                        <li><a href="{% url 'core:contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-9">
+                <div class=" footer_post">
+                    <h3>Branches </h3>
+                    <ul>
+                        <li>
+                           
+                            <div class="text">
+                                <p><i class="far fa-map"></i> Saburi Junction Opp. Orange Filling Station Dei- dei FCT Abuja</p>
+                                <a href="#">HEAD OFFICE</a>
+                            </div>
+                        </li>
+                        <li>
+                           
+                            <div class="text">
+                                <p><i class="far fa-map"></i>11 crescent, road 28 Kado Estate, FCT Abuja</p>
+                                <a href="#">BRANCH</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-12">
+                <div class="footer_copyright">
+                    <p>Copyright © Gream 2023. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--==========================
+        FOOTER END
+    ===========================-->
