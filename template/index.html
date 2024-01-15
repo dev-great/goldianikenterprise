@@ -2,6 +2,8 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+
+<div class="content-container">
     <!--==========================
             POPUP SUBSCRIBE START
         ===========================-->
@@ -288,9 +290,17 @@
     </div>
     
 </section>
+</div>
 
 <!--==========================
         COUNTER END
     ===========================-->
+
+    <style>
+        .content-container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+    </style>
 
 {% endblock %}
