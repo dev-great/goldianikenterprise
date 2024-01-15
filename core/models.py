@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from cloudinary.models import CloudinaryField
 
 CustomUser = get_user_model()
 
@@ -20,7 +21,7 @@ class Meal(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     tag = models.ManyToManyField(Tag, blank=True, null=True)
-    image = models.ImageField(upload_to='meal_images/', blank=True, null=True)
+    image = CloudinaryField('image')
 
     def __str__(self):
         return self.name
