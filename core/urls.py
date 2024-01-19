@@ -20,7 +20,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     path('success/', views.success, name='success'),
     path('failure/', views.failure, name='failure'),
-    path('order-created/<int:totalPrice>/',
+    path('order-created/<int:totalPrice>/<str:payment_type>/',
          views.create_order, name='create_order'),
     path('order-created/', views.create_shipping_address,
          name='create_order_no_total'),
@@ -30,5 +30,8 @@ urlpatterns = [
 
     path('shipping/', views.shipping_address,
          name='shipping'),
+
+    path('payment_type/', views.payment_type,
+         name='payment_type'),
 
 ]

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<!--==========================
+        PAYMENT START
+    ===========================-->
+<section class="payment pt_170 xs_pt_100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-7 wow fadeInLeft">
+                <div class="payment_area">
+                    <h5>how would you like to pay?</h5>
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <a href="#" class="single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" style="height:200px; text-align:center; ">
+                                <h4 style="padding-top: 25px;">Pay on Delivery</h4>
+                            </a>
+                        </div>
+                    <div class="col-md-6 col-6" >
+                        <a href="{% url 'core:checkout' %}" class="single_payment" 
+                            style="height:200px; text-align:center;  background-color:#AB162C;">
+                            <h4 style="padding-top: 25px; color:white">Card Payment</h4>
+                        </a>
+                    </div>
+                    </div>
+                    {% if delivery_fee is not 0 %}
+                    <div class="payment_btn_area">
+                    <a class="common_btn" href=" {% url 'core:create_order' totalPrice=total_amount|add:delivery_fee payment_type='payment_on_delivery' %}">Complete
+                        Ordering</a>
+                    </div>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="payment_modal">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="pay_modal_info">
+                        <p>Selecting the 'Payment on Delivery' option allows you to place an order without upfront payment, and you can settle the
+                        payment in cash at the time of delivery. Depending on yout location, you'll be charged a delivery fee.</p>
+                        <ul>
+                            <li>Dei dei (₦500.00)</li>
+                            <li>Kado (₦1,500.00)</li>
+                            <li>Within Abuja (₦2,000.00)</li>
+                        </ul>
+                        <form action="{% url 'core:payment_type' %}" method="get">
+                            <select class="select_js"  name="city" id="cityDropdown"  required>
+                                <option value="">Select delivery city</option>
+                                {% for city, fee in delivery_fees.items %}
+                                {% if city == request.GET.city %}
+                                <option value="{{ city }}" selected>{{ city }}</option>
+                                {% else %}
+                                <option value="{{ city }}">{{ city }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                            <div class="payment_btn_area col-md-6">
+                              <button type="submit" class=" common_btn">Submit</button>
+
+                            </div>
+                        </form>
+                        
+                       
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==========================
+        PAYMENT END
+    ===========================-->
+
+
+{% endblock %}

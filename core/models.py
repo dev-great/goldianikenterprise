@@ -76,6 +76,7 @@ class Order(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     address = models.ForeignKey(ShippingAddress, on_delete=models.DO_NOTHING)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_type = models.CharField(max_length=30)
     status = models.CharField(max_length=20, choices=[(
         'pending', 'Pending'), ('completed', 'Completed')])
     created_on = models.DateTimeField(default=timezone.now)

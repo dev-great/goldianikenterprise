@@ -34,23 +34,47 @@ def create_shipping_address(request):
         additional_information=additional_information
     )
 
-    return redirect('core:checkout')
+    return redirect('core:payment_type')
 
 
 def shipping_address(request):
     return render(request, 'checkout/shipping address.html')
 
 
-def create_order(request, totalPrice):
+def payment_type(request):
+    user_cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = CartItem.objects.filter(cart=user_cart)
+    total_amount = cart_items.aggregate(total=Sum('subtotal'))['total'] or 0
+
+    delivery_fees = {'Dei_dei': 500, 'Kado': 1500, 'Within_Abuja': 2000}
+
+    # Default to 'AL' if not provided
+    selected_city = request.GET.get('city', 'AL')
+    delivery_fee = delivery_fees.get(selected_city, 0)
+
+    context = {
+        'total_amount': total_amount,
+        'delivery_fees': delivery_fees,
+        'selected_city': selected_city,
+        'delivery_fee': delivery_fee,
+        'user': request.user
+    }
+
+    return render(request, 'checkout/payment_type.html', context)
+
+
+def create_order(request, totalPrice, payment_type):
     user_cart = Cart.objects.get(user=request.user)
     cart_items = CartItem.objects.filter(cart=user_cart)
 
     with transaction.atomic():
-        shipping_address = ShippingAddress.objects.first()
+        shipping_address = ShippingAddress.objects.filter(
+            user=request.user).first()
         new_order = Order.objects.create(
             user=request.user,
             address=shipping_address,
             total_price=totalPrice,
+            payment_type=payment_type,
             status='pending'
         )
 

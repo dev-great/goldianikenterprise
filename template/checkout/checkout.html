@@ -92,7 +92,7 @@
             callback: function (response) {
                 if (response.status == "success") {
                    if (totalAmount.trim() !== "") {
-                        window.location.href = "{% url 'core:create_order' totalPrice=total_amount|add:delivery_fee %}";
+                        window.location.href = "{% url 'core:create_order' totalPrice=total_amount|add:delivery_fee  payment_type=payment_online %}";
                     } else {
                         console.error("Total amount not available");
 
