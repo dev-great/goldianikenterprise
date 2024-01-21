@@ -87,6 +87,23 @@ def create_order(request, totalPrice, payment_type):
             )
 
         cart_items.delete()
+        order_item = OrderItem.objects.filter(order=new_order)
+        merge_data = {
+            'order': new_order,
+            'shipping_address': shipping_address,
+            'order_items': order_item,
+        }
+
+        html_body = render_to_string(
+            "emails/product_alert.html", merge_data)
+        msg = EmailMultiAlternatives(
+            subject=f"Website Order Placed Mail",
+            from_email=settings.EMAIL_HOST_USER,
+            to=["gmarshal070@gmail.com"],
+            body=" ",
+        )
+        msg.attach_alternative(html_body, "text/html")
+        msg.send(fail_silently=False)
 
     return redirect('core:success')
 

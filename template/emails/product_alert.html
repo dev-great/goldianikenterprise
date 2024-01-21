@@ -52,16 +52,16 @@
     <h3>Order Information:</h3>
     <p>Order ID: {{ order.id }}</p>
     <p>Total Price: ₦{{ order.total_price }}</p>
-    <p>Order Date: {{ order.order_date }}</p>
+    <p>Order Date: {{ order.created_on }}</p>
+    <p>Order Type: {{ order.payment_type }}</p>
 
     <h3>Order Items:</h3>
     <ul>
       {% for item in order_items %}
       <li>
-        <strong>{{ item.product.product_name }}</strong><br />
-        Variant: {{ item.varient }}<br />
+        <strong>{{ item.meal.name }}</strong><br />
         Quantity: {{ item.quantity }}<br />
-        Price: ₦{{ item.price }}
+        Price: ₦{{ item.subtotal }}
       </li>
       {% endfor %}
     </ul>
@@ -78,12 +78,12 @@
         contact our support team.
       </p>
 
-      <p>Contact Alexy Polska:</p>
-      <p>Email: sales@alexypolska.com</p>
-      <p>Phone: +234 (902) 510 1778</p>
+      <br />
+      <p>Contact Goldianik Enterprise:</p>
+      <p>Email: Goldianikenterprise@yahoo.com</p>
+      <br />
       <p>
-        Address: Suite 116 Foramot Plaza, No 11 shomoye oshundairo, computer
-        village ikeja beside Polaris Bank, Lagos, Nigeria.
+        Address: Saburi Junction Opp. Orange Filling Station Dei- dei FCT Abuja.
       </p>
     </div>
   </body>
