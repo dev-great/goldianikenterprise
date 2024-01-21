@@ -99,7 +99,7 @@ def create_order(request, totalPrice, payment_type):
         msg = EmailMultiAlternatives(
             subject=f"Website Order Placed Mail",
             from_email=settings.EMAIL_HOST_USER,
-            to=["gmarshal070@gmail.com"],
+            to=["goldianikenterprise@yahoo.com"],
             body=" ",
         )
         msg.attach_alternative(html_body, "text/html")
