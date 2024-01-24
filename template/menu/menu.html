@@ -71,7 +71,7 @@
                                 <p class="descrption">{{ meal.description }}</p>
                                 <div class="d-flex flex-wrap align-items-center">
                                     <a class="add_to_cart" href="{% url 'core:menu_detail' pk=meal.pk %}">View Details</a>
-                                    <h3>₦{{ meal.price|intcomma }} <del>₦{{ meal.price|add:1000|intcomma }}</del></h3>
+                                    <h3>₦{{ meal.price|intcomma }} <del>₦{{ meal.price|add:500|intcomma }}</del></h3>
                                 </div>
                             </div>
                         </div>
