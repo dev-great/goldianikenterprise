@@ -46,7 +46,8 @@ def payment_type(request):
     cart_items = CartItem.objects.filter(cart=user_cart)
     total_amount = cart_items.aggregate(total=Sum('subtotal'))['total'] or 0
 
-    delivery_fees = {'Dei_dei': 500, 'Kado': 1500, 'Within_Abuja': 2000}
+    delivery_fees = {'Dei_dei': 500, 'Kado': 1500,
+                     'Within_Abuja': 2000, 'in_store': 0}
 
     # Default to 'AL' if not provided
     selected_city = request.GET.get('city', 'AL')
