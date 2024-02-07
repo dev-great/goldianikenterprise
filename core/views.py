@@ -65,48 +65,56 @@ def payment_type(request):
 
 
 def create_order(request, totalPrice, payment_type):
-    user_cart = Cart.objects.get(user=request.user)
-    cart_items = CartItem.objects.filter(cart=user_cart)
+    try:
+        user_cart = Cart.objects.get(user=request.user)
+        cart_items = CartItem.objects.filter(cart=user_cart)
 
-    with transaction.atomic():
-        shipping_address = ShippingAddress.objects.filter(
-            user=request.user).first()
-        new_order = Order.objects.create(
-            user=request.user,
-            address=shipping_address,
-            total_price=totalPrice,
-            payment_type=payment_type,
-            status='pending'
-        )
-
-        for cart_item in cart_items:
-            OrderItem.objects.create(
-                order=new_order,
-                meal=cart_item.meal,
-                quantity=cart_item.quantity,
-                subtotal=cart_item.subtotal
+        with transaction.atomic():
+            shipping_address = ShippingAddress.objects.filter(
+                user=request.user).first()
+            new_order = Order.objects.create(
+                user=request.user,
+                address=shipping_address,
+                total_price=totalPrice,
+                payment_type=payment_type,
+                status='pending'
             )
 
-        cart_items.delete()
-        order_item = OrderItem.objects.filter(order=new_order)
-        merge_data = {
-            'order': new_order,
-            'shipping_address': shipping_address,
-            'order_items': order_item,
-        }
+            for cart_item in cart_items:
+                OrderItem.objects.create(
+                    order=new_order,
+                    meal=cart_item.meal,
+                    quantity=cart_item.quantity,
+                    subtotal=cart_item.subtotal
+                )
 
-        html_body = render_to_string(
-            "emails/product_alert.html", merge_data)
-        msg = EmailMultiAlternatives(
-            subject=f"Website Order Placed Mail",
-            from_email=settings.EMAIL_HOST_USER,
-            to=["goldianikenterprise@yahoo.com"],
-            body=" ",
-        )
-        msg.attach_alternative(html_body, "text/html")
-        msg.send(fail_silently=False)
+            cart_items.delete()
+            order_items = OrderItem.objects.filter(order=new_order)
+            merge_data = {
+                'order': new_order,
+                'shipping_address': shipping_address,
+                'order_items': order_items,
+            }
 
-    return redirect('core:success')
+            html_body = render_to_string(
+                "emails/product_alert.html", merge_data)
+            msg = EmailMultiAlternatives(
+                subject=f"Website Order Placed Mail",
+                from_email=settings.EMAIL_HOST_USER,
+                to=["goldianikenterprise@yahoo.com"],
+                body=" ",
+            )
+            msg.attach_alternative(html_body, "text/html")
+            msg.send(fail_silently=False)
+
+        return redirect('core:success')
+
+    except Exception as e:
+        # Log the error for debugging purposes
+        print(f"An error occurred: {e}")
+
+        # Redirect the user to an error page or handle the error as needed
+        return redirect('core:failure')
 
 
 def index(request):
