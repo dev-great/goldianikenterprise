@@ -110,10 +110,7 @@ def create_order(request, totalPrice, payment_type):
         return redirect('core:success')
 
     except Exception as e:
-        # Log the error for debugging purposes
         print(f"An error occurred: {e}")
-
-        # Redirect the user to an error page or handle the error as needed
         return redirect('core:failure')
 
 
