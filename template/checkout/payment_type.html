@@ -13,7 +13,7 @@
                     <h5>how would you like to pay?</h5>
                     <div class="row">
                         <div class="col-md-12 col-6">
-                            <a href=" {% url 'core:create_order' totalPrice=total_amount payment_type='in_store' %}" class="single_payment" style=" text-align:center; ">
+                            <a href=" {% url 'core:create_order' totalPrice=total_amount|add:0 payment_type='in_store' %}" class="single_payment" style=" text-align:center; ">
                                 <h4 style="padding: 25px;">In store payment</h4>
                             </a>
                         </div>
