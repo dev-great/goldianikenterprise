@@ -38,7 +38,8 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=255, blank=True, null=True)
     additional_information = models.TextField(
         blank=True, null=True)
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.city}"
@@ -51,7 +52,8 @@ class Cart(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                           editable=False, unique=True, db_index=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Cart for {self.user}"
@@ -64,7 +66,8 @@ class CartItem(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.quantity} x {self.meal.name} in Cart #{self.cart.id}"
@@ -79,7 +82,8 @@ class Order(models.Model):
     payment_type = models.CharField(max_length=30)
     status = models.CharField(max_length=20, choices=[(
         'pending', 'Pending'), ('completed', 'Completed')])
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Order for {self.user} - Total Price: {self.total_price}"
@@ -92,7 +96,8 @@ class OrderItem(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.quantity} x {self.meal.name} in Order #{self.order.id}"
@@ -111,7 +116,8 @@ class Subscriber(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                           editable=False, unique=True, db_index=True)
     email = models.EmailField()
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.email}"
@@ -125,7 +131,8 @@ class ContactUs(models.Model):
     phone_number = models.CharField(max_length=20)
     subject = models.CharField(max_length=255)
     message = models.TextField()
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.email}"
